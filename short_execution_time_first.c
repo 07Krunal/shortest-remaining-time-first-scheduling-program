@@ -10,6 +10,8 @@ int main()
   float k=0,x=0; 
   printf("Enter number of Process:\t "); 
   scanf("%d",&n); 
+  printf("\n\tArrival time should be greater than 2 as CPU remains idle for first 3 secs.\n");
+  printf("\n\tBurst time should be less tha 10\n");
   for(count=0;count<n;count++) 
   { 
     printf("Enter Arrival Time and Burst Time for Process Process Number %d :",count+1); 
@@ -26,11 +28,20 @@ for(i=0;i<n;i++)
 		exit(1);
 	}
 }
+for(i=0;i<n;i++)
+{
+	if(a_time[i]<3)
+	{
+		printf("\nS INVALID Arrival Time it should be greater than 3\n");
+		getch();
+		exit(1);
+	}
+}
   printf("\n\n\tProcess\t|Turnaround Time|Waiting Time\n\n"); 
   printf("\t===========================================\n");
 for(i=0;i<n;i++)
 {
-	m=m+b_time[i]+2;
+	m=m+b_time[i];
 }
 min=m;
 time=m;
@@ -41,7 +52,7 @@ for(i=0;i<n;i++)
 		time=a_time[i];
 	}
 }
-for(i=time;i<=m;i=i+b_time[j]+2)
+for(i=time;i<=m;i=i+b_time[j])
 {
 	min=m;
 	remain=0;
